@@ -10,9 +10,14 @@
 
 const topicEntry = document.querySelector('.topics')
 
-function Tab() {
+function Tab(props) {
     const tab = document.createElement('div');
+
     tab.classList.add('tab');
+
+    tab.textContent = props;
+
+    return tab;
 }
 
 axios
@@ -21,8 +26,8 @@ axios
       console.log(res);
       res.data.topics.forEach(value => {
           console.log(value);
-        //   const newTab = Tab(value);
-        //   topicEntry.appendChild(newTab);
+          const newTab = Tab(value);
+          topicEntry.appendChild(newTab);
       });
   })
   .catch(err => {
