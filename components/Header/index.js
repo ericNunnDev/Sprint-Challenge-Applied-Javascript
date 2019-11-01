@@ -19,9 +19,7 @@ function Header() {
     const tempSpan = document.createElement('span');
 
     // Setup Structure
-    header.appendChild(dateSpan);
-    header.appendChild(title);
-    header.appendChild(tempSpan);
+    header.appendChild(dateSpan, title, tempSpan);
 
     // Set Class Names
     header.classList.add('header');
@@ -30,6 +28,9 @@ function Header() {
 
     // Set Text Content
 
+    dateSpan.textContent = 'SMARCH 28, 2019';
+    title.textContent = 'Lambda Times';
+    tempSpan.textContent = '98°';
 
     return header;
 }

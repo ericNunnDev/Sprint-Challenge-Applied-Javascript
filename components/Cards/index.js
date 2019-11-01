@@ -22,7 +22,7 @@ const cardContainer = document.querySelector('.cards-container');
 
 
 
-function Card(authorPhoto) {
+function Card() {
     const card = document.createElement('div');
     const title = document.createElement('div');
     const author = document.createElement('div');
@@ -30,15 +30,26 @@ function Card(authorPhoto) {
     const imgSrc = document.createElement('img');
     const span = document.createElement('span');
 
+    card.appendChild(title);
+    card.appendChild(author);
+    card.appendChild(imgContainer);
+    card.appendChild(imgSrc);
+    card.appendChild(span);
 
+    card.classList.add('card');
+    title.classList.add(headline);
+    author.classList.add('author');
+    imgContainer.classList.add('img-container');
 
+    return card;
 }
 
 axios
 .get('https://lambda-times-backend.herokuapp.com/articles')
 .then(res => {
     console.log(res);
+
 })
 .catch(err => {
-    console.log(err);
+    console.log('You messed something up in Cards.', err);
 })
