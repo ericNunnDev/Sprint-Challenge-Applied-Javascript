@@ -8,21 +8,23 @@
 //  The tab component should look like this:
 //    <div class="tab">topic here</div>
 
-function Tab() {
-
-}
-
 const topicEntry = document.querySelector('.topics')
+
+function Tab() {
+    const tab = document.createElement('div');
+    tab.classList.add('tab');
+}
 
 axios
   .get('https://lambda-times-backend.herokuapp.com/topics')
   .then(res => {
       console.log(res);
-      res.data.topics.forEach(topic => {
-        const newTab = Tab(topic);
-        topicEntry.appendChild(newTab);
+      res.data.topics.forEach(value => {
+          console.log(value);
+        //   const newTab = Tab(value);
+        //   topicEntry.appendChild(newTab);
       });
   })
   .catch(err => {
-      console.log(err);
+      console.log('What are you doin man? Something aint right. Fix it fix it fix it fix it!', err);
   });

@@ -11,8 +11,6 @@
 
 const headerContainer = document.querySelector('.header-container');
 
-
-
 function Header() {
     // Define Elements
     const header = document.createElement('div');
