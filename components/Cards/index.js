@@ -20,9 +20,7 @@
 
 const cardContainer = document.querySelector('.cards-container');
 
-
-
-function Card() {
+function Card(props) {
     const card = document.createElement('div');
     const title = document.createElement('div');
     const author = document.createElement('div');
@@ -32,14 +30,19 @@ function Card() {
 
     card.appendChild(title);
     card.appendChild(author);
-    card.appendChild(imgContainer);
-    card.appendChild(imgSrc);
-    card.appendChild(span);
+    author.appendChild(imgContainer);
+    imgContainer.appendChild(imgSrc);
+    author.appendChild(span);
 
     card.classList.add('card');
-    title.classList.add(headline);
+    title.classList.add('headline');
     author.classList.add('author');
     imgContainer.classList.add('img-container');
+
+    title.textContent = props.headline;
+    author.textContent = props.authorName;
+    imgSrc.src = props.authorPhoto;
+    span.textContent = props.authorName;
 
     return card;
 }
@@ -48,7 +51,21 @@ axios
 .get('https://lambda-times-backend.herokuapp.com/articles')
 .then(res => {
     console.log(res);
-
+    res.data.articles.bootstrap.forEach(item => {
+        cardContainer.appendChild(Card(item));
+    })
+    res.data.articles.javascript.forEach(item => {
+        cardContainer.appendChild(Card(item));
+    })
+    res.data.articles.jquery.forEach(item => {
+        cardContainer.appendChild(Card(item));
+    })
+    res.data.articles.node.forEach(item => {
+        cardContainer.appendChild(Card(item));
+    })
+    res.data.articles.technology.forEach(item => {
+        cardContainer.appendChild(Card(item));
+    })
 })
 .catch(err => {
     console.log('You messed something up in Cards.', err);
